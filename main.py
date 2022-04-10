@@ -184,24 +184,24 @@ while run:
                     if (b.y >= a.y and b.y <= a.y + a.h) or b.y + b.h >= a.y and b.y + b.h <= a.y + a.h:
                         if a.rank == 3:
                             score += 10
-                            # na1 = Asteroid(2)
-                            # na2 = Asteroid(2)
-                            # na1.x = a.x
-                            # na2.x = a.x
-                            # na1.y = a.y
-                            # na2.y = a.y
-                            # asteroids.append(na1)
-                            # asteroids.append(na2)
+                            na1 = Asteroid(2)
+                            na2 = Asteroid(2)
+                            na1.x = a.x
+                            na2.x = a.x
+                            na1.y = a.y
+                            na2.y = a.y
+                            asteroids.append(na1)
+                            asteroids.append(na2)
                         elif a.rank == 2:
                             score += 20
-                            # na1 = Asteroid(1)
-                            # na2 = Asteroid(1)
-                            # na1.x = a.x
-                            # na2.x = a.x
-                            # na1.y = a.y
-                            # na2.y = a.y
-                            # asteroids.append(na1)
-                            # asteroids.append(na2)
+                            na1 = Asteroid(1)
+                            na2 = Asteroid(1)
+                            na1.x = a.x
+                            na2.x = a.x
+                            na1.y = a.y
+                            na2.y = a.y
+                            asteroids.append(na1)
+                            asteroids.append(na2)
                         else:
                             score += 30
                         asteroids.pop(asteroids.index(a))
