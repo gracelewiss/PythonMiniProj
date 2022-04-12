@@ -6,8 +6,8 @@ from sqlalchemy import true
 
 pygame.init()
 
-sw= 800
-sh= 800
+sw= 600
+sh= 600
 
 bg = pygame.image.load('asteroidPics/starbg.png')
 alienImg = pygame.image.load('asteroidPics/alienShip.png')
