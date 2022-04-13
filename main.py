@@ -4,7 +4,7 @@ import random
 
 from sqlalchemy import true
 
-pygame.init()
+pygame.init()  
 
 sw= 600
 sh= 600
@@ -15,7 +15,6 @@ playerRocket = pygame.image.load('asteroidPics/spaceRocket.png')
 star = pygame.image.load('asteroidPics/star.png')
 asteroid50 = pygame.image.load('asteroidPics/asteroid50.png')
 asteroid100 = pygame.image.load('asteroidPics/asteroid100.png')
-asteroid150 = pygame.image.load('asteroidPics/asteroid150.png')
 
 pygame.display.set_caption('Asteroids')
 win = pygame.display.set_mode((sw, sh))
@@ -41,7 +40,6 @@ class Player(object):
         self.head = (self.x + self.cosine * self.w//2, self.y - self.sine * self.h//2)
 
     def draw(self, win):
-        #win.blit(self.img, [self.x,self.y,self.w,self.h])
         win.blit(self.rotatedSurf, self.rotatedRect)
 
     def turnLeft(self):
@@ -109,10 +107,8 @@ class Asteroid(object):
         self.rank = rank
         if self.rank == 1:
             self.image = asteroid50
-        elif self.rank == 2:
-            self.image = asteroid100
-        else:
-            self.image = asteroid150
+        else: 
+                self.image = asteroid100
         self.w = 50 * rank
         self.h = 50 * rank
         self.ranPoint = random.choice([(random.randrange(0, sw-self.w), random.choice([-1*self.h - 5, sh + 5])), (random.choice([-1*self.w - 5, sw + 5]), random.randrange(0, sh - self.h))])
@@ -135,7 +131,7 @@ def redrawGameWindow():
     win.blit(bg, (0,0))
     font = pygame.font.SysFont('arial',30)
     livesText = font.render('Lives: ' + str(lives), 1, (255, 255, 255))
-    playAgainText = font.render('Press Tab to Play Again', 1, (255,255,255))
+    playAgainText = font.render('You Lose!! Press Tab to Play Again', 1, (255,255,255))
     scoreText = font.render('Score: ' + str(score), 1, (255,255,255))
     player.draw(win)
     
@@ -160,7 +156,7 @@ while run:
     count += 1
     if not gameover:
         if count % 50 == 0:
-            ran = random.choice([1,1,1,2,2,3])
+            ran = random.choice([1,1,1,2,2])
             asteroids.append(Asteroid(ran))
         player.updateLocation()
         for b in playerBullets:
@@ -182,26 +178,8 @@ while run:
             for b in playerBullets:
                 if (b.x >= a.x and b.x <= a.x + a.w) or b.x + b.w >= a.x and b.x + b.w <= a.x + a.w:
                     if (b.y >= a.y and b.y <= a.y + a.h) or b.y + b.h >= a.y and b.y + b.h <= a.y + a.h:
-                        if a.rank == 3:
-                            score += 10
-                            na1 = Asteroid(2)
-                            na2 = Asteroid(2)
-                            na1.x = a.x
-                            na2.x = a.x
-                            na1.y = a.y
-                            na2.y = a.y
-                            asteroids.append(na1)
-                            asteroids.append(na2)
-                        elif a.rank == 2:
+                        if a.rank == 2:
                             score += 20
-                            na1 = Asteroid(1)
-                            na2 = Asteroid(1)
-                            na1.x = a.x
-                            na2.x = a.x
-                            na1.y = a.y
-                            na2.y = a.y
-                            asteroids.append(na1)
-                            asteroids.append(na2)
                         else:
                             score += 30
                         asteroids.pop(asteroids.index(a))
@@ -218,6 +196,7 @@ while run:
             player.turnRight()
         if keys[pygame.K_UP]:
             player.moveForward()
+        
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
