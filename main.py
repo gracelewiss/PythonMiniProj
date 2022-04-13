@@ -10,9 +10,7 @@ sw= 600
 sh= 600
 
 bg = pygame.image.load('asteroidPics/starbg.png')
-alienImg = pygame.image.load('asteroidPics/alienShip.png')
 playerRocket = pygame.image.load('asteroidPics/spaceRocket.png')
-star = pygame.image.load('asteroidPics/star.png')
 asteroid50 = pygame.image.load('asteroidPics/asteroid50.png')
 asteroid100 = pygame.image.load('asteroidPics/asteroid100.png')
 
